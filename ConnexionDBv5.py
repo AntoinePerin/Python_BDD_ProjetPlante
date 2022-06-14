@@ -135,24 +135,3 @@ def recupererNiveauArrossage(adresseMac):
 adresseMac="test54"
 #recupererNiveauArrossage(adresseMac)
 
-# VII- Recuperer heures autorisés pour une plante
-
-    # VII-1 Fonction recuperer heures autorisés
-    
-def recupererHeureAllowed(adresseMac):
-    RECUPERER_HEURE="SELECT Heure_horaire FROM horaire_autorise WHERE Adresse_Mac_Plante =%s AND Autorise_Horaire = 0"
-    connection = dbConnection()
-        
-    with connection.cursor() as cursor:
-        cursor.execute(RECUPERER_HEURE,(adresseMac))
-        
-    result = cursor.fetchone()
-    print(result) #tu recuperes un objet json, il faut le deserialiser pour avoir le seuil seul
-            
-    connection.commit()
-    connection.close()
-    
-    # VII-2 test Fonction recuperer heures autorisés
-    
-adresseMac="test54"
-recupererHeureAllowed(adresseMac)
